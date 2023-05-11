@@ -838,6 +838,13 @@ class AbstractReader(object):
         s = self.parse_dg(model)
         if self.verbose and s != -1:
             self.logger.info("Succesful!")
+        
+        # Parse generators
+        if self.verbose:
+            self.logger.info("Parsing the generators...")
+        s = self.parse_generators(model)
+        if self.verbose and s != -1:
+            self.logger.info("Succesful!")
 
         if self.verbose:
             self.logger.info("Parsing done.")
@@ -893,6 +900,12 @@ class AbstractReader(object):
 
     def parse_dg(self, model):
         """Parse the distributed generation (e.g. PV).
+        .. note:: Has to be implemented in subclasses.
+        """
+        pass
+
+    def parse_generators(self, model):
+        """Parse the generators.
         .. note:: Has to be implemented in subclasses.
         """
         pass
